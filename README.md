@@ -1,14 +1,33 @@
+# New Project Starter
+
+- Find and replace all occurrences of `new-project-name` and `new_project_name` with their kebab and snake case equivalents for your new project
+
+- Install all deps
 ```
 $ yarn
-$ shadow-cljs watch app
-;; wait for first compile to finish or expo gets confused
-$ yarn start
-
-;; production build
-$ shadow-cljs release app
-;; no idea what to do for expo
 ```
 
+- Start shadow-cljs
+```
+$ shadow-cljs watch app
+;; wait for first compile to finish or expo gets confused
+```
+
+- (In another terminal) Start expo
+```
+$ yarn start
+```
+
+# Expo Shadow Info
+
+## Production Builds
+```
+$ shadow-cljs release app
+$ expo build
+;; optionally expo publish if a build already exists to OTA update to
+```
+
+## Expo Web
 You can also use `expo start --web` in order to run [react native web](https://github.com/necolas/react-native-web).
 
 You'll want to disable hot reload for react native web (since shadow-cljs is a lot faster, and you'll lose all state). It's not possible to do this "properly", but neupsh@clojurians suggested the following:

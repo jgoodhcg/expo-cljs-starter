@@ -1,4 +1,4 @@
-(ns test.app
+(ns new-project-name.app
   (:require
     ["expo" :as ex]
     ["react-native" :as rn]
@@ -28,7 +28,7 @@
 
 (defn root []
   [:> rn/View {:style (.-container styles)}
-   [:> rn/Text {:style (.-title styles)} "Hello!"]
+   [:> rn/Text {:style (.-title styles)} "Hello there!"]
    [:> rn/Image {:source splash-img :style {:width 200 :height 200}}]])
 
 (defn start

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "hello-world",
+    "name": "new-project-name",
     "slug": "reagent-expo",
     "privacy": "public",
     "entryPoint": "./app/index.js",
