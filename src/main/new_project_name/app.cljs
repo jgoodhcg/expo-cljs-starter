@@ -5,6 +5,8 @@
     ["react" :as react]
     ["react-native-router-flux" :as nav]
     ["react-native-paper" :as paper]
+    [camel-snake-kebab.core :as csk]
+    [camel-snake-kebab.extras :as cske]
     [reagent.core :as r]
     [re-frame.core :refer [subscribe dispatch dispatch-sync]]
     [shadow.expo :as expo]
@@ -22,12 +24,12 @@
 (def styles
   ^js (-> {:surface
            {:flex           1
-            :justifyContent "center"}
+            :justify-content "center"}
 
-           :themeSwitch
-           {:flexDirection  "row"
-            :justifyContent "space-between"}}
-          ;; TODO kebab -> Camel
+           :theme-switch
+           {:flex-direction  "row"
+            :justify-content "space-between"}}
+          (#(cske/transform-keys csk/->camelCase %))
           (clj->js)
           (rn/StyleSheet.create)))
 
