@@ -34,10 +34,11 @@
           (rn/StyleSheet.create)))
 
 
-(defn home-component []
+(defn home-scene [props]
   (r/as-element
-   (let [version (<sub [:version])
-         theme   (<sub [:theme])]
+   (let [version         (<sub [:version])
+         theme-selection (<sub [:theme])
+         theme           (.-theme props)]
      [:> paper/Surface {:style (.-surface styles)}
       [:> rn/View
        [:> paper/Card
@@ -45,9 +46,10 @@
                               :subtitle "For quick project startup"}]
         [:> paper/Card.Content
          [:> rn/View {:style (.-themeSwitch styles)}
-          [:> paper/Text "Dark mode"]
-          [:> paper/Switch {:value           (= theme :dark)
-                            :on-value-change #(>evt [:set-theme (if (= theme :dark)
+          [:> paper/Text {:style {:color (->> theme .-colors .-accent)}}
+           "Dark mode"]
+          [:> paper/Switch {:value           (= theme-selection :dark)
+                            :on-value-change #(>evt [:set-theme (if (= theme-selection :dark)
                                                                   :light
                                                                   :dark)])}]]
          [:> paper/Paragraph (str "Version: " version)]]]]])))
@@ -63,7 +65,7 @@
        [:> nav/Scene {:key          "home"
                       :title        "Home"
                       :hide-nav-bar true
-                      :component    home-component}]]]]))
+                      :component    (paper/withTheme home-scene)}]]]]))
 
 (defn start
   {:dev/after-load true}
