@@ -36,16 +36,17 @@
   (r/as-element
    (let [version (<sub [:version])]
      [:> rn/View {:style (.-container styles)}
-      [:> rn/Text {:style (.-title styles)} "CLJS + Expo + Navigation"]
+      [:> rn/Text {:style (.-title styles)} "A nice template"]
       [:> rn/Text {:style (.-title styles)} (str "Version: " version)]
       [:> rn/Image {:source splash-img :style {:width 200 :height 200}}]])))
 
 (defn root []
   [:> nav/Router
    [:> nav/Stack {:key "root"}
-    [:> nav/Scene {:key       "home"
-                   :title     "Home"
-                   :component home-component}]]])
+    [:> nav/Scene {:key          "home"
+                   :title        "Home"
+                   :hide-nav-bar true
+                   :component    home-component}]]])
 
 (defn start
   {:dev/after-load true}
