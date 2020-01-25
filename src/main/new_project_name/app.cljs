@@ -5,7 +5,11 @@
     ["react" :as react]
     ["react-native-router-flux" :as nav]
     [reagent.core :as r]
+    [re-frame.core :refer [subscribe dispatch dispatch-sync]]
     [shadow.expo :as expo]
+    [new-project-name.handlers]
+    [new-project-name.subscriptions]
+    [new-project-name.helpers :refer [<sub]]
     ))
 
 ;; must use defonce and must refresh full app so metro can fill these in
@@ -29,9 +33,12 @@
 
 
 (defn home-component []
-  (r/as-element [:> rn/View {:style (.-container styles)}
-                 [:> rn/Text {:style (.-title styles)} "CLJS + Expo + Navigation"]
-                 [:> rn/Image {:source splash-img :style {:width 200 :height 200}}]]))
+  (r/as-element
+   (let [version (<sub [:version])]
+     [:> rn/View {:style (.-container styles)}
+      [:> rn/Text {:style (.-title styles)} "CLJS + Expo + Navigation"]
+      [:> rn/Text {:style (.-title styles)} (str "Version: " version)]
+      [:> rn/Image {:source splash-img :style {:width 200 :height 200}}]])))
 
 (defn root []
   [:> nav/Router
@@ -46,5 +53,6 @@
   (expo/render-root (r/as-element [root])))
 
 (defn init []
+  (dispatch-sync [:initialize-db])
   (start))
 
