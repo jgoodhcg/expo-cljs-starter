@@ -9,4 +9,9 @@
        (select-one! [:version])))
 
 
+(defn theme [db _]
+  (->> db
+       (select-one! [:settings :theme])))
+
 (reg-sub :version version)
+(reg-sub :theme theme)

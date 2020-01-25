@@ -4,12 +4,13 @@
     ["react-native" :as rn]
     ["react" :as react]
     ["react-native-router-flux" :as nav]
+    ["react-native-paper" :as paper]
     [reagent.core :as r]
     [re-frame.core :refer [subscribe dispatch dispatch-sync]]
     [shadow.expo :as expo]
     [new-project-name.handlers]
     [new-project-name.subscriptions]
-    [new-project-name.helpers :refer [<sub]]
+    [new-project-name.helpers :refer [<sub >evt]]
     ))
 
 ;; must use defonce and must refresh full app so metro can fill these in
@@ -19,34 +20,48 @@
 (defonce splash-img (js/require "../assets/shadow-cljs.png"))
 
 (def styles
-  ^js (-> {:container
-           {:flex 1
-            :backgroundColor "#fff"
-            :alignItems "center"
+  ^js (-> {:surface
+           {:flex           1
             :justifyContent "center"}
-           :title
-           {:fontWeight "bold"
-            :fontSize 24
-            :color "blue"}}
+
+           :themeSwitch
+           {:flexDirection  "row"
+            :justifyContent "space-between"}}
+          ;; TODO kebab -> Camel
           (clj->js)
           (rn/StyleSheet.create)))
 
 
 (defn home-component []
   (r/as-element
-   (let [version (<sub [:version])]
-     [:> rn/View {:style (.-container styles)}
-      [:> rn/Text {:style (.-title styles)} "A nice template"]
-      [:> rn/Text {:style (.-title styles)} (str "Version: " version)]
-      [:> rn/Image {:source splash-img :style {:width 200 :height 200}}]])))
+   (let [version (<sub [:version])
+         theme   (<sub [:theme])]
+     [:> paper/Surface {:style (.-surface styles)}
+      [:> rn/View
+       [:> paper/Card
+        [:> paper/Card.Title {:title    "A nice Expo/Shadow-cljs template"
+                              :subtitle "For quick project startup"}]
+        [:> paper/Card.Content
+         [:> rn/View {:style (.-themeSwitch styles)}
+          [:> paper/Text "Dark mode"]
+          [:> paper/Switch {:value           (= theme :dark)
+                            :on-value-change #(>evt [:set-theme (if (= theme :dark)
+                                                                  :light
+                                                                  :dark)])}]]
+         [:> paper/Paragraph (str "Version: " version)]]]]])))
 
 (defn root []
-  [:> nav/Router
-   [:> nav/Stack {:key "root"}
-    [:> nav/Scene {:key          "home"
-                   :title        "Home"
-                   :hide-nav-bar true
-                   :component    home-component}]]])
+  (let [theme (<sub [:theme])]
+    [:> paper/Provider {:theme (case theme
+                                 :light paper/DefaultTheme
+                                 :dark  paper/DarkTheme
+                                 paper/DarkTheme)}
+     [:> nav/Router
+      [:> nav/Stack {:key "root"}
+       [:> nav/Scene {:key          "home"
+                      :title        "Home"
+                      :hide-nav-bar true
+                      :component    home-component}]]]]))
 
 (defn start
   {:dev/after-load true}

@@ -31,4 +31,9 @@
 (defn initialize-db [_ _]
   default-app-db)
 
+(defn set-theme [db [_ theme]]
+  (->> db
+       (setval [:settings :theme] theme)))
+
 (reg-event-db :initialize-db [validate-spec] initialize-db)
+(reg-event-db :set-theme [validate-spec] set-theme)
