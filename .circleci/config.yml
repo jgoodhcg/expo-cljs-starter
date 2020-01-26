@@ -21,7 +21,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - m2-deps-{{ checksum "project.clj" }}
+            - m2-deps-{{ checksum "shadow-cljs.edn" }}
             # fallback to using the latest cache if no exact match is found
             - m2-deps-
 
@@ -30,7 +30,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: m2-deps-{{ checksum "project.clj" }}
+          key: m2-deps-{{ checksum "shadow-cljs.edn" }}
 
       - run: shadow-cljs compile test
 
