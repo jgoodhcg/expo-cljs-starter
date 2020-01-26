@@ -72,3 +72,6 @@ Source maps don't seem to work properly. `metro` propably doesn't read input sou
 Initial load in dev is quite slow since `metro` processes the generated `.js` files.
 
 `reagent.core` loads `reagent.dom` which will load `react-dom` which we don't have or need. Including the `src/main/reagent/dom.cljs` to create an empty shell. Copied from [re-natal](https://github.com/drapanjanas/re-natal/blob/master/resources/cljs-reagent6/reagent_dom.cljs).
+
+CircleCI checks should be in place for pull requests to the master branch.
+
