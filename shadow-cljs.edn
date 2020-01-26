@@ -1,8 +1,7 @@
 ;; shadow-cljs configuration
 {:source-paths
- ["src/dev"
-  "src/main"
-  "src/new_project_name"]
+ ["src/main"
+  "src/test"]
 
  :dependencies
  [[reagent "0.8.1"]
@@ -13,8 +12,13 @@
 
  :builds
  {:app
-  {:target :react-native
-   :init-fn new-project-name.app/init
+  {:target     :react-native
+   :init-fn    new-project-name.app/init
    :output-dir "app"
-   :devtools {:autoload true
-              :preloads [shadow.expo.keep-awake]}}}}
+   :devtools   {:autoload true
+                :preloads [shadow.expo.keep-awake]}}
+
+  :test
+  {:target    :node-test
+   :output-to "out/node-tests.js"
+   :autorun   true}}}

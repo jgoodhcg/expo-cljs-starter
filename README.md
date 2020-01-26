@@ -50,6 +50,11 @@ You'll want to disable hot reload for react native web (since shadow-cljs is a l
 
 ## Tests
 
+To run handler and subscriptions tests using `cljs.test`
+```
+$ shadow-cljs watch test
+```
+
 You can find an example of using `jest` to test `react-native` apps here.
 
 - https://github.com/mynomoto/reagent-expo/tree/jest-test

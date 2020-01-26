@@ -1,5 +1,6 @@
-(ns new-project-name.helpers)
+(ns new-project-name.helpers
+  (:require [re-frame.core :refer [subscribe dispatch]]))
 
-(def <sub (comp deref re-frame.core/subscribe))
+(def <sub (comp deref subscribe))
 
-(def >evt re-frame.core/dispatch)
+(def >evt dispatch)

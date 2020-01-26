@@ -1,6 +1,7 @@
 (ns new-project-name.app
   (:require
     ["expo" :as ex]
+    ["expo-constants" :as expo-constants]
     ["react-native" :as rn]
     ["react" :as react]
     ["react-native-router-flux" :as nav]
@@ -12,8 +13,7 @@
     [shadow.expo :as expo]
     [new-project-name.handlers]
     [new-project-name.subscriptions]
-    [new-project-name.helpers :refer [<sub >evt]]
-    ))
+    [new-project-name.helpers :refer [<sub >evt]]))
 
 ;; must use defonce and must refresh full app so metro can fill these in
 ;; at live-reload time `require` does not exist and will cause errors
@@ -32,7 +32,6 @@
           (#(cske/transform-keys csk/->camelCase %))
           (clj->js)
           (rn/StyleSheet.create)))
-
 
 (defn home-scene [props]
   (r/as-element
@@ -72,7 +71,13 @@
   []
   (expo/render-root (r/as-element [root])))
 
+(def version (-> expo-constants
+                 (.-default)
+                 (.-manifest)
+                 (.-version)))
+
 (defn init []
   (dispatch-sync [:initialize-db])
+  (dispatch-sync [:set-version version])
   (start))
 
