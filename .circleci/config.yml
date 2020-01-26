@@ -15,5 +15,4 @@ jobs:
       - checkout
       - run: npm install
       - run: npx shadow-cljs -A:dev -v compile test
-      - run: cd out
-      - run: node node-tests.js
+      - run: node out/node-tests.js
