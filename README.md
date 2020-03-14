@@ -10,7 +10,7 @@ $ yarn
 - Start shadow-cljs
 ```
 $ shadow-cljs watch app
-;; wait for first compile to finish or expo gets confused
+;; Wait for first compile to finish or expo gets confused
 ```
 
 - (In another terminal) Start expo
