@@ -20,5 +20,5 @@
 
   :test
   {:target    :node-test
-   :output-to "out/node-tests.js"
+   :output-to "test/node-tests.js"
    :autorun   true}}}
