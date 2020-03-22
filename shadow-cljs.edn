@@ -13,7 +13,7 @@
  :builds
  {:app
   {:target     :react-native
-   :init-fn    new-project-name.app/init
+   :init-fn    app.app/init
    :output-dir "app"
    :devtools   {:autoload true
                 :preloads [shadow.expo.keep-awake]}}
