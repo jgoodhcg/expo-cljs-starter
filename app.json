@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "new-project-name",
-    "slug": "reagent-expo",
+    "slug": "new-project-name",
     "privacy": "public",
     "entryPoint": "./app/index.js",
     "sdkVersion": "35.0.0",
