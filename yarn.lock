@@ -4679,10 +4679,10 @@ react-native-gesture-handler@~1.3.0:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-react-native-paper@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.5.1.tgz#1fac594d1cfdb2bb9bce37bdd48c09a1f4aed3cb"
-  integrity sha512-TiJvuzqsaXrmNBxOvwVMdhxpjuMK2BuJ7Gzgu+vNNHRnGvtgmKkGRWfh7s8BKTYbluar91s3Fpee9ptniwea6g==
+react-native-paper@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.8.0.tgz#94d9b50b945ce91c90491cce34d1c27845503990"
+  integrity sha512-3oNHjhjhpi/UDbYwwgeWQKf1qRbqQ7aTO0EUHbcxPNEq5BLClpI3kBoS6JTKk4Ge86xeJikXHHXN953g1mVr3Q==
   dependencies:
     "@callstack/react-theme-provider" "^3.0.5"
     color "^3.1.2"
